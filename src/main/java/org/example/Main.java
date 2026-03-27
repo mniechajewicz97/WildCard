@@ -121,13 +121,12 @@ public class Main {
         System.out.println(getAnyValue(99.99));
 
         System.out.println("Zadanie 2");
-        MySystem<String> gulagPremium = new MySystem<>();
-        gulagPremium.setValue("123 lata prac na Sybirze");
-        System.out.println(gulagPremium.getValue());;
+        MySystem mySystem = new MySystem<>("NazwaSystemu");
+        System.out.println(mySystem.getValue());
 
-        MySystem<Integer> gulagPremium2 = new MySystem<>();
-        gulagPremium2.setValue(123);
-        System.out.println(gulagPremium2.getValue());;
+        MySystem systemId = new MySystem<>(1224);
+        System.out.println(systemId.getValue());
+
 
         System.out.println("Zadanie 3");
         List<Integer> numerki = List.of(1, 2, 3, 4, 5);
@@ -140,13 +139,13 @@ public class Main {
         System.out.println(getFirstElement(numerki));
 
         System.out.println("Zadanie 5");
-        Checklist<String> checkStrings =  new Checklist();
+        Checklist<String> checkStrings =  new Checklist<>();
         checkStrings.addElement("Mariola");
         checkStrings.addElement("Wiola");
         checkStrings.addElement("Topola");
         checkStrings.printAllElements();
 
-        Checklist<Integer> checkIntegers = new Checklist();
+        Checklist<Integer> checkIntegers = new Checklist<>();
         checkIntegers.addElement(1);
         checkIntegers.addElement(2);
         checkIntegers.addElement(3);
@@ -157,7 +156,9 @@ public class Main {
         return list.getFirst();
     }
     static <T> void printAnyList2 (List<T> list){
-        System.out.println(list);
+        for (T value: list){
+            System.out.println(value);
+        }
     }
 
     static <T> T getAnyValue(T value) {
