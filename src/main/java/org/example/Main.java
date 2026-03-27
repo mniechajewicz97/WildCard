@@ -129,8 +129,8 @@ public class Main {
 
 
         System.out.println("Zadanie 3");
-        List<Integer> numerki = List.of(1, 2, 3, 4, 5);
-        List<String> imiona = List.of("Ala", "Ola", "Ela");
+        List<Integer> numerki = List.of(2, 3, 4, 5);
+        List<String> imiona = List.of("Ala", "Ala", "Ola", "Ela");
         printAnyList2(imiona);
         printAnyList2(numerki);
 
@@ -139,7 +139,7 @@ public class Main {
         System.out.println(getFirstElement(numerki));
 
         System.out.println("Zadanie 5");
-        Checklist<String> checkStrings =  new Checklist<>();
+        Checklist<String> checkStrings = new Checklist<>();
         checkStrings.addElement("Mariola");
         checkStrings.addElement("Wiola");
         checkStrings.addElement("Topola");
@@ -151,12 +151,155 @@ public class Main {
         checkIntegers.addElement(3);
         checkIntegers.printAllElements();
 
+        //Zadanie 1 – metoda z dwoma typami
+        //
+        //Napisz metodę, która przyjmuje:
+        //
+        //dowolną wartość,
+        //dowolny drugi typ (np. opis),
+        //
+        //i zwraca tekst w formie:
+        //wartość + " (" + opis + ")"
+        //
+        //Sprawdź dla:
+        //
+        //liczby + String
+        //String + liczby
+        //
+        //Cel: ogarnąć, że metoda może mieć więcej niż jeden typ generyczny.
+        System.out.println("Zadanie 6");
+        System.out.println(nameAndValue("Mysza", 123));
+        System.out.println(nameAndValue(123, "Mysz"));
+
+
+        //Zadanie 2 – porównanie dwóch wartości
+        //
+        //Napisz metodę, która:
+        //
+        //przyjmuje dwie wartości tego samego typu,
+        //sprawdza czy są równe,
+        //zwraca true albo false.
+        //
+        //Sprawdź dla:
+        //
+        //String
+        //Integer
+        //
+        //Cel: utrwalić, że jeden typ generyczny oznacza „oba muszą być tego samego typu”.
+        System.out.println("Zadanie 7");
+
+        System.out.println(compare(123, 123));
+        System.out.println(compare("123", 123));
+        System.out.println(compare("Ania", "Ania"));
+        System.out.println(compare("Ania  ", "Ania"));
+
+        //Zadanie 3 – ostatni element listy
+        //
+        //Napisz metodę, która:
+        //
+        //przyjmuje listę dowolnego typu,
+        //zwraca ostatni element.
+        //
+        //Sprawdź dla:
+        //
+        //listy Stringów
+        //listy liczb
+        //
+        //Cel: operacje na liście + generyk.
+        System.out.println("Zadanie 8");
+        // List<Integer> numerki = List.of(1, 2, 3, 4, 5);
+        // List<String> imiona = List.of("Ala", "Ola", "Ela");
+        System.out.println(theLastElement(numerki));
+        System.out.println(theLastElement(imiona));
+
+        //Zadanie 4 – klasa z dwoma polami różnych typów
+        //
+        //Stwórz klasę, która:
+        //
+        //przechowuje dwie wartości różnych typów (np. coś jak para),
+        //ma konstruktor,
+        //ma dwie metody do pobierania tych wartości.
+        //
+        //Sprawdź dla:
+        //
+        //String + Integer
+        //String + Double
+        //
+        //Cel: generyki w klasie z więcej niż jednym typem.
+        System.out.println("Zadanie 9");
+        Animal<String, Integer> kot = new Animal<>("Kot", 1000);
+        System.out.println(kot.getValue() + " " + kot.getValue2());
+
+        Animal<Integer, String> pies = new Animal<>(2, "Psy");
+        System.out.println(pies.getValue() + " " + pies.getValue2());
+
+        Animal<String, Double> papuga = new Animal<>("Papuga", 156.55);
+        System.out.println(papuga.getValue() + " " + papuga.getValue2());
+
+        //Zadanie 5 – filtrowanie listy (proste logiczne)
+        //
+        //Napisz metodę, która:
+        //
+        //przyjmuje listę dowolnego typu,
+        //oraz jedną wartość,
+        //wypisuje tylko te elementy z listy, które są równe tej wartości.
+        //
+        //Sprawdź dla:
+        //
+        //listy Stringów
+        //listy Integerów
+        //
+        //Cel: użycie .equals() w generykach + praca na elementach.
+        System.out.println("Zadanie 10");
+
+        equalsElementFromList(numerki, 1);
+        equalsElementFromList(imiona, "Ala");
+
+
     }
-    static<T> T getFirstElement(List<T> list) {
+
+    static <T> void equalsElementFromList(List<T> list, T element) {
+        boolean found = false;
+        for (T e : list) {
+            if (e.equals(element)) {
+                found = true;
+                System.out.println(e);
+            }
+        }
+        if (found == false) {
+            System.out.println("Not found element " + element);
+        }
+
+    }
+
+
+    static <T> T theLastElement(List<T> list) {
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return (list.get(list.size() - 1));
+        }
+
+    }
+
+    static <T> boolean compare(T o1, T o2) {
+        if (o1.equals(o2)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static <T, U> String nameAndValue(T value, U value2) {
+        return value + " opis " + value2;
+    }
+
+    static <T> T getFirstElement(List<T> list) {
         return list.getFirst();
     }
-    static <T> void printAnyList2 (List<T> list){
-        for (T value: list){
+
+    static <T> void printAnyList2(List<T> list) {
+        for (T value : list) {
             System.out.println(value);
         }
     }
