@@ -1,22 +1,16 @@
 package org.example;
 
-public class BoxWithoutGenerics {
-    private Object value;
+import java.util.ArrayList;
+import java.util.List;
 
-    public BoxWithoutGenerics() {
+public class BoxWithoutGenerics<T> {
+    private List<T> list = new ArrayList<>();
+
+    public List<T> getValue() {
+        return list;
     }
 
-    public BoxWithoutGenerics(Object value) {
-
+    public void setList(List<T> list) {
+        this.list = list;
     }
-
-    public Object getValue() {
-        return value;
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-
 }
